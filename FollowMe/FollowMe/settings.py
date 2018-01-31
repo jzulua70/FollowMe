@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'FollowMeApp',
+    'geoApp',
 
 ]
 CRISPY_TEMPLATE_PACK='bootstrap3'
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'FollowMe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.contrib.gis.db.backends.mysql',
         'NAME': 'followme',
         'USER': 'root',
         'PASSWORD': '2178026',

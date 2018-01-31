@@ -12,6 +12,7 @@ from django.http import HttpResponse
 from .forms import UserLoginForm
 from .forms import UserRegisterForm
 
+global user
 
 def index(request):
     return render(request, 'index.html')
@@ -28,7 +29,7 @@ def login_view(request):
 		login(request,user)
 		print(request.user.is_authenticated)
 		# redirect
-		return redirect("/FollowMeApp/index")
+		return redirect("mainPage")
 
 
 	return render(request, 'login_view.html', context)
@@ -44,7 +45,7 @@ def register_view(request):
 		user.save()
 		new_user = authenticate(username=user.username,password=user.password)
 		login(request,user)
-		return redirect("/FollowMeApp/index")
+		return redirect("/FollowMeApp/index",user)
 
 	context = {
 		"form":form,
@@ -59,4 +60,7 @@ def logout_view(request):
 
 def register(request):
     return render(request, 'register.html')
-  
+ 
+
+def mainPage(request):
+	return render(request, 'mainPage.html')

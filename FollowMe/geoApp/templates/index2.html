@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<script>
+		var marker;
+		var waypointByID = {};
+
+		$(document).ready(function () {
+			function activateWaypoints() {
+        // Add waypoint click handler
+        $('.waypoint').each(function () {
+        	$(this).click(function() {
+        		var waypoint = waypointByID[this.id];
+        		var center = new google.maps.LatLng(waypoint.lat, waypoint.lng);
+        		if (marker) marker.setMap();
+        		marker = new google.maps.Marker({map: map, position: center});
+        		map.panTo(center);
+        	}).hover(
+        	function () {this.className = this.className.replace('OFF', 'ON');},
+        	function () {this.className = this.className.replace('ON', 'OFF');}
+        	);
+        });
+    }
+    activateWaypoints();
+});
+</script>
+<style>
+	body {font-family: sans-serif}
+	#map {width: 500px; height: 300px}
+	#waypoints {overflow: auto; width: 500px; height: 100px}
+	.linkOFF {color: darkblue}
+	.linkON {color: white; background-color: darkblue}
+</style>
+</head>
+<body >
+	<div id=map>
+
+		<script>
+			{% for waypoint in waypoints %}
+			waypointByID[{{waypoint.id}}] = {
+				name: "{{waypoint.name}}",
+				lat: {{waypoint.geometry.y}},
+				lng: {{waypoint.geometry.x}}
+			};
+			{% endfor %}
+			function initMap() {
+				
+				var uluru = {lat: 6.2066729, lng: -75.5747966};
+				var map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 15,
+					center: uluru
+				});
+				var marker = new google.maps.Marker({
+					position: uluru,
+					map: map
+				});
+			}
+		</script>
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWkBIL-ii3jkf2Bhw7EDSrwuoL0QmIzEA&callback=initMap">
+	</script>
+</div>
+<div id=waypoint>
+	{{content}}
+</div>
+</body>
+</html>

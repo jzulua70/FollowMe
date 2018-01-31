@@ -17,10 +17,14 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 
 
+
 from FollowMeApp.views import (login_view, register_view, logout_view)
 urlpatterns = [
-	path('FollowMeApp/', include('FollowMeApp.urls')),
     path('admin/', admin.site.urls),
+	path('FollowMeApp/', include('FollowMeApp.urls')),
+    re_path(r'^geoApp/', include('geoApp.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     re_path(r'^login/', logout_view, name= 'login'),
+
+
 ]

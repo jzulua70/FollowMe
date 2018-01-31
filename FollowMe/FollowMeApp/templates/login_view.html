@@ -16,6 +16,26 @@
 	<script type="text/javascript" src="{% static 'js/mobile.js' %}"></script>
 </head>
 <body>
+	{% if user.is_authenticated %}
+	<div id="header" style="padding: 18px 0 18px;  text-align: right">
+		<!-- <a href="index" class="logo">
+			<img src="{% static 'images/FollowMe.png' %}" alt="" style=" width: 366px;">
+		</a> -->
+		<ul id="navigation"  style="padding:0px 0 0;">
+			<li class="selected">
+				<a href="index">home</a>
+			</li>
+			
+			<li>
+				<a href="{% static 'contact.html' %}">{{user.username}}</a>
+			</li>
+			<li>
+				<a href="logout">Logout</a>
+			</li>
+		</ul>
+	</div>
+	{% endif %}
+	{% if not user.is_authenticated %}
 	<div id="header">
 		<a href="index" class="logo">
 			<img src="{% static 'images/FollowMe.png' %}" alt="" style=" width: 366px;">
@@ -33,10 +53,11 @@
 			</li>
 			
 			<li>
-				<a href="{% static 'contact.html' %}">contact</a>
+				<a>contact</a>
 			</li>
 		</ul>
 	</div>
+	{% endif %}
 	<div id="body">
 		<h1><span>Regístrate, es Gratis!</span></h1>
 		<form method="post">
