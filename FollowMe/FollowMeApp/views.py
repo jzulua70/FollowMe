@@ -8,10 +8,10 @@ from django.contrib.auth import (
 	)
 
 from django.http import HttpResponse
-
+from django.template.loader import render_to_string
 from .forms import UserLoginForm
 from .forms import UserRegisterForm
-
+from geoApp.models import Waypoint
 global user
 
 def index(request):
@@ -63,4 +63,8 @@ def register(request):
  
 
 def mainPage(request):
-	return render(request, 'mainPage.html')
+
+	waypoints = Waypoint.objects.order_by('name')	
+	context = {'waypoints':waypoints ,'content': render_to_string('waypoints.html', {'waypoints': waypoints}),}
+	return redirect("/geoApp/map",context)
+	return render(request, '/geoApp/map', context)

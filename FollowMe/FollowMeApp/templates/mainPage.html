@@ -16,14 +16,10 @@
 <body>
 	{% if user.is_authenticated %}
 	<div id="header" style="padding: 18px 0 18px;  text-align: right">
-		<!-- <a href="index" class="logo">
-			<img src="{% static 'images/FollowMe.png' %}" alt="" style=" width: 366px;">
-		</a> -->
 		<ul id="navigation"  style="padding:0px 0 0;">
 			<li class="selected">
 				<a href="index">home</a>
-			</li>
-			
+			</li>	
 			<li>
 				<a href="{% static 'contact.html' %}">{{user.username}}</a>
 			</li>
@@ -35,28 +31,11 @@
 	{% endif %}
 	<div id="body">
 		<div id="featured">
-			<!-- Aquí va el código -->
+			<div id=waypoint>
+	{{content}}
+</div>
 		</div>
-<!--		<ul>
-			<li>
-				<a href="{% static 'gallery.html' %}">
-					<img src="{% static 'images/the-father.jpg' %}" alt="">
-					<span>the father</span>
-				</a>
-			</li>
-			<li>
-				<a href="{% static 'gallery.html' %}">
-					<img src="{% static 'images/the-actor.jpg' %}" alt="">
-					<span>the actor</span>
-				</a>
-			</li>
-			<li>
-				<a href="{% static 'gallery.html' %}">
-					<img src="{% static 'images/the-nerd.jpg' %}" alt="">
-					<span>the nerd</span>
-				</a>
-			</li>
-		</ul>-->
+
 	</div>
 	<div id="footer">
 		<div>

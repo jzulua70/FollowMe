@@ -36,28 +36,47 @@
 </head>
 <body >
 	<div id=map>
-
+		
 		<script>
+			var points = [];
+			var marcadores = [];
+			var waypointByID={};
 			{% for waypoint in waypoints %}
-			waypointByID[{{waypoint.id}}] = {
-				name: "{{waypoint.name}}",
-				lat: {{waypoint.geometry.y}},
-				lng: {{waypoint.geometry.x}}
-			};
+			
+			points.push({lat:{{waypoint.geometry.y}}, lng:{{waypoint.geometry.x}}})
+			marcadores.push([{{waypoint.id}},{{waypoint.geometry.y}},{{waypoint.geometry.x}}]);
+			
 			{% endfor %}
 			function initMap() {
 				
-				var uluru = {lat: 6.2066729, lng: -75.5747966};
 				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 15,
-					center: uluru
+					zoom: 15	,
+					center: points[0]
 				});
-				var marker = new google.maps.Marker({
-					position: uluru,
-					map: map
-				});
+
+
+				for (i = 0; i < marcadores.length; i++) {  
+					marker = new google.maps.Marker({
+						position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
+						map: map
+					});
+
+					
+					var flightPath = new google.maps.Polyline({
+						path: points,
+						geodesic: true,
+						strokeColor: '#FF0000',
+						strokeOpacity: 1.0,
+						strokeWeight: 2
+					});
+
+					flightPath.setMap(map);
+
+				}
+				
 			}
 		</script>
+		
 		<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWkBIL-ii3jkf2Bhw7EDSrwuoL0QmIzEA&callback=initMap">
 	</script>
