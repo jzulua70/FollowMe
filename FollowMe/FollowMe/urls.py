@@ -21,10 +21,11 @@ from django.urls import path,include,re_path
 from FollowMeApp.views import (login_view, register_view, logout_view)
 urlpatterns = [
     path('admin/', admin.site.urls),
-	path('FollowMeApp/', include('FollowMeApp.urls')),
-    re_path(r'^geoApp/', include('geoApp.urls')),
+	re_path(r'FollowMeApp/', include('FollowMeApp.urls')),
+    re_path(r'geoApp/', include('geoApp.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    re_path(r'^login/', logout_view, name= 'login'),
+    re_path(r'/login/', login_view, name= 'login'),
+    re_path(r'/logout/' , logout_view, name='logout_view'),
 
 
 ]

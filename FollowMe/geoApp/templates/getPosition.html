@@ -1,0 +1,153 @@
+
+{% load staticfiles %}
+{% load staticfiles i18n %}
+
+<!doctype html>
+<!-- Website Template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FollowMe</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %} ">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/mobile.css' %}" media="screen and (max-width : 568px)">
+	<script type="text/javascript" src="{% static 'js/mobile.js' %}"></script>
+	<style>
+      /* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+      #map {
+      	height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+      	height: 100%;
+      	margin: 0;
+      	padding: 0;
+      }
+  </style>
+</head>
+<body>
+	{% if user.is_authenticated %}
+	<div id="header" style="padding: 18px 0 18px;  text-align: right">
+		<ul id="navigation"  style="padding:0px 0 0;">
+			<li class="selected">
+				<a href="index">home</a>
+			</li>	
+			<li>
+				<a href="{% static 'contact.html' %}">{{user.username}}</a>
+			</li>
+			<li>
+				<a href="map">ruta</a>
+			</li>
+
+			<li>
+				<a href="getPosition">Obtener posición</a>
+			</li>
+			<li>
+				<a href="logout">Logout</a>
+			</li>
+		</ul>
+	</div>
+	{% endif %}
+	<div id="body">
+		<div id="featured">
+			<div id=waypoint>
+				{{content}}
+			</div>
+		</div>
+
+
+		<div id="map" style="position: relative;overflow: hidden;height: 339px;"></div>
+		<script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+
+      function initMap() {
+      	var map = new google.maps.Map(document.getElementById('map'), {
+      		center: {lat: -34.397, lng: 150.644},
+      		zoom: 22
+      	});
+      	var infoWindow = new google.maps.InfoWindow({map: map});
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+        	navigator.geolocation.getCurrentPosition(function(position) {
+        		var pos = {
+        			lat: position.coords.latitude,
+        			lng: position.coords.longitude
+        		};
+        		document.getElementById('lat').value = pos['lat'];
+        		document.getElementById('lng').value = pos['lng'];
+        		//console.log(pos)
+        		var f=new Date();
+				cad=f.getHours()+":"+f.getMinutes()+":"+f.getSeconds(); 
+				document.getElementById('hora').value = cad;
+				var d = new Date();
+				
+				document.getElementById('fecha').value = d;
+
+
+
+        		infoWindow.setPosition(pos);
+        		infoWindow.setContent('Location found.');
+        		map.setCenter(pos);
+        	}, function() {
+        		handleLocationError(true, infoWindow, map.getCenter());
+        	});
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+      }
+
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  	infoWindow.setPosition(pos);
+  	infoWindow.setContent(browserHasGeolocation ?
+  		'Error: The Geolocation service failed.' :
+  		'Error: Your browser doesn\'t support geolocation.');
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWkBIL-ii3jkf2Bhw7EDSrwuoL0QmIzEA&callback=initMap">
+</script>
+
+<div>
+	<form method="post">
+  Latitud:<br>
+  <input type="text" name="lat" id="lat"><br>
+  Longitud:<br>
+  <input type="text" name="lng" id="lng">
+  Hora:<br>
+  <input type="text" name="Hora" id="hora"><br>
+  Fecha:<br>
+  <input type="text" name="Fecha" id="fecha">
+  <input type="submit" value="Envíar" >
+</form>
+
+</div>
+
+</div>
+<div id="footer">
+	<div>
+		<p>&copy; 2023 by Mustacchio. All rights reserved.</p>
+		<ul>
+			<li>
+				<a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a>
+			</li>
+			<li>
+				<a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a>
+			</li>
+			<li>
+				<a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
+			</li>
+			<li>
+				<a href="http://pinterest.com/fwtemplates/" id="pinterest">pinterest</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

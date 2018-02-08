@@ -63,8 +63,9 @@ def register(request):
  
 
 def mainPage(request):
+	return redirect("/geoApp/map")
 
-	waypoints = Waypoint.objects.order_by('name')	
-	context = {'waypoints':waypoints ,'content': render_to_string('waypoints.html', {'waypoints': waypoints}),}
-	return redirect("/geoApp/map",context)
-	return render(request, '/geoApp/map', context)
+	# waypoints = Waypoint.objects.order_by('name')	
+	# context = {'waypoints':waypoints ,'content': render_to_string('waypoints.html', {'waypoints': waypoints}),}
+	# return redirect("/geoApp/map",context)
+	# return render(request, '/geoApp/map', context)
