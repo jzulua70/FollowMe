@@ -18,7 +18,8 @@ from django.urls import path,include,re_path
 
 
 
-from FollowMeApp.views import (login_view, register_view, logout_view)
+from FollowMeApp.views import (login_view, register_view, logout_view, index)
+from geoApp.views import (map,getPosition) 
 urlpatterns = [
     path('admin/', admin.site.urls),
 	re_path(r'FollowMeApp/', include('FollowMeApp.urls')),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     re_path(r'/login/', login_view, name= 'login'),
     re_path(r'/logout/' , logout_view, name='logout_view'),
+    
 
 
 ]

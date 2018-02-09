@@ -18,16 +18,19 @@
 <body>
 	{% if user.is_authenticated %}
 	<div id="header" style="padding: 18px 0 18px;  text-align: right">
-		<!-- <a href="index" class="logo">
-			<img src="{% static 'images/FollowMe.png' %}" alt="" style=" width: 366px;">
-		</a> -->
 		<ul id="navigation"  style="padding:0px 0 0;">
 			<li class="selected">
 				<a href="index">home</a>
-			</li>
-			
+			</li>	
 			<li>
 				<a href="{% static 'contact.html' %}">{{user.username}}</a>
+			</li>
+			<li>
+				<a href="map">ruta</a>
+			</li>
+
+			<li>
+				<a href="getPosition">Obtener posición</a>
 			</li>
 			<li>
 				<a href="logout">Logout</a>

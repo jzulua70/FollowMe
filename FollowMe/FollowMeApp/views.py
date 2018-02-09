@@ -69,3 +69,4 @@ def mainPage(request):
 	# context = {'waypoints':waypoints ,'content': render_to_string('waypoints.html', {'waypoints': waypoints}),}
 	# return redirect("/geoApp/map",context)
 	# return render(request, '/geoApp/map', context)
+

@@ -31,7 +31,7 @@
 	<div id="header" style="padding: 18px 0 18px;  text-align: right">
 		<ul id="navigation"  style="padding:0px 0 0;">
 			<li class="selected">
-				<a href="index">home</a>
+				<a href="index2">home</a>
 			</li>	
 			<li>
 				<a href="{% static 'contact.html' %}">{{user.username}}</a>
@@ -115,7 +115,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWkBIL-ii3jkf2Bhw7EDSrwuo
 </script>
 
 <div>
-	<form method="post">
+	<form action="{% url 'getData' %}" method="post">
+	{% csrf_token %}
   Latitud:<br>
   <input type="text" name="lat" id="lat"><br>
   Longitud:<br>
