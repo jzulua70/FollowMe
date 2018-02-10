@@ -318,7 +318,7 @@ p a:hover {
 	margin: 0 0 37px;
 	padding: 20px 10px;
 	text-align: center;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	width: 596px;
 }
 #body form textarea {

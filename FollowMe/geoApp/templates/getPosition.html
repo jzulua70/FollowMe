@@ -2,10 +2,12 @@
 {% load staticfiles %}
 {% load staticfiles i18n %}
 
+
 <!doctype html>
 <!-- Website Template by freewebsitetemplates.com -->
 <html>
 <head>
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FollowMe</title>
@@ -25,8 +27,15 @@
       	padding: 0;
       }
   </style>
+  <script type="text/javascript">
+  	var formulario = document.getElementById('formulario'); // el id del formulario
+      			var redirect = function(){
+	   				setTimeout("document.getElementById('formulario').submit()",5000)
+      			}
+   </script>
+
 </head>
-<body>
+<body onload="redirect()">
 	{% if user.is_authenticated %}
 	<div id="header" style="padding: 18px 0 18px;  text-align: right">
 		<ul id="navigation"  style="padding:0px 0 0;">
@@ -34,7 +43,7 @@
 				<a href="index2">home</a>
 			</li>	
 			<li>
-				<a href="{% static 'contact.html' %}">{{user.username}}</a>
+				<a>{{user.username}}</a>
 			</li>
 			<li>
 				<a href="map">ruta</a>
@@ -87,8 +96,8 @@
 				var d = new Date();
 				
 				document.getElementById('fecha').value = d;
-
-
+				document.getElementById('precision').value = position.coords.accuracy;
+			
 
         		infoWindow.setPosition(pos);
         		infoWindow.setContent('Location found.');
@@ -115,7 +124,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWkBIL-ii3jkf2Bhw7EDSrwuo
 </script>
 
 <div>
-	<form action="{% url 'getData' %}" method="post">
+	<form action="{% url 'getData' %}" method="post" id="formulario">
 	{% csrf_token %}
   Latitud:<br>
   <input type="text" name="lat" id="lat"><br>
@@ -125,7 +134,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWkBIL-ii3jkf2Bhw7EDSrwuo
   <input type="text" name="Hora" id="hora"><br>
   Fecha:<br>
   <input type="text" name="Fecha" id="fecha">
-  <input type="submit" value="Envíar" >
+  <input type="hidden" name="precision" id="precision">
+  <!--<input type="submit" value="Envíar" >-->
 </form>
 
 </div>
