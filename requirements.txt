@@ -46,7 +46,6 @@ reportlab==3.3.0
 requests==2.9.1
 six==1.11.0
 sqlparse==0.2.4
-unattended-upgrades==0.1
 unity-scope-calculator==0.1
 unity-scope-chromiumbookmarks==0.1
 unity-scope-colourlovers==0.1
