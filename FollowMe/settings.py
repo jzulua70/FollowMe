@@ -79,15 +79,24 @@ WSGI_APPLICATION = 'FollowMe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.mysql',
-        'NAME': 'followme',
-        'USER': 'root',
-        'PASSWORD': '2178026',
-        'HOST':'',
-        'PORT':'',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'cps_dbs',
+        'USER': 'admin',
+        'PASSWORD': 'cps20181*',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
+    # 'default': {
+    #     'ENGINE': 'django.contrib.gis.db.backends.mysql',
+    #     'NAME': 'followme',
+    #     'USER': 'root',
+    #     'PASSWORD': '2178026',
+    #     'HOST':'',
+    #     'PORT':'',
+    # }
 }
 
 LOGIN_REDIRECT_URL = '/'
