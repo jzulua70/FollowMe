@@ -1,1 +1,1 @@
-web: gunicorn FollowMe:FollowMe --log-file=-
+web: gunicorn FollowMe.wsgi --log-file=-
