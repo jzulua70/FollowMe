@@ -1,0 +1,143 @@
+
+ {% load staticfiles %}
+ {% load staticfiles i18n %}
+
+<!doctype html>
+<!-- Website Template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FollowMe</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %} ">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/mobile.css' %}" media="screen and (max-width : 568px)">
+	<script type="text/javascript" src="{% static 'js/mobile.js' %}"></script>
+	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<script>
+		var marker;
+		var waypointByID = {};
+
+		$(document).ready(function () {
+			function activateWaypoints() {
+        // Add waypoint click handler
+        $('.waypoint').each(function () {
+        	$(this).click(function() {
+        		var waypoint = waypointByID[this.id];
+        		var center = new google.maps.LatLng(waypoint.lat, waypoint.lng);
+        		if (marker) marker.setMap();
+        		marker = new google.maps.Marker({map: map, position: center});
+        		map.panTo(center);
+        	}).hover(
+        	function () {this.className = this.className.replace('OFF', 'ON');},
+        	function () {this.className = this.className.replace('ON', 'OFF');}
+        	);
+        });
+    }
+    activateWaypoints();
+});
+</script>
+<style>
+	body {font-family: sans-serif}
+	#map {width: 500px; height: 300px}
+	#waypoints {overflow: auto; width: 500px; height: 100px}
+	.linkOFF {color: darkblue}
+	.linkON {color: white; background-color: darkblue}
+</style>
+</head>
+<body>
+	{% if user.is_authenticated %}
+	<div id="header" style="padding: 18px 0 18px;  text-align: right">
+		<ul id="navigation"  style="padding:0px 0 0;">
+			<li class="selected">
+				<a href="index2">home</a>
+			</li>	
+			<li>
+				<a>{{user.username}}</a>
+			</li>
+			<li>
+				<a href="map">ruta</a>
+			</li>
+
+			<li>
+				<a href="getPosition">Obtener posición</a>
+			</li>
+			<li>
+				<a href="logout">Logout</a>
+			</li>
+		</ul>
+	</div>
+	{% endif %}
+	<div id="body">
+	<div id=map>
+		
+		<script>
+			var points = [];
+			var marcadores = [];
+			var waypointByID={};
+			{% for waypoint in waypoints %}
+			
+			points.push({lat:{{waypoint.geometry.y}}, lng:{{waypoint.geometry.x}}})
+			marcadores.push([{{waypoint.id}},{{waypoint.geometry.y}},{{waypoint.geometry.x}}]);
+			
+			{% endfor %}
+			function initMap() {
+				
+				var map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 15	,
+					center: points[0]
+				});
+
+
+				for (i = 0; i < marcadores.length; i++) {  
+					marker = new google.maps.Marker({
+						position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
+						map: map
+					});
+
+					
+					var flightPath = new google.maps.Polyline({
+						path: points,
+						geodesic: true,
+						strokeColor: '#FF0000',
+						strokeOpacity: 1.0,
+						strokeWeight: 2
+					});
+
+					flightPath.setMap(map);
+
+				}
+				
+			}
+		</script>
+		
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWkBIL-ii3jkf2Bhw7EDSrwuoL0QmIzEA&callback=initMap">
+	</script>
+</div>
+<div id=waypoint>
+	{{content}}
+</div>
+		</div>
+
+	</div>
+	<div id="footer">
+		<div>
+			<p>&copy; 2023 by Mustacchio. All rights reserved.</p>
+			<ul>
+				<li>
+					<a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a>
+				</li>
+				<li>
+					<a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a>
+				</li>
+				<li>
+					<a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
+				</li>
+				<li>
+					<a href="http://pinterest.com/fwtemplates/" id="pinterest">pinterest</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

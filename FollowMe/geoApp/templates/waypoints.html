@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<style>
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+   background-color:#fff;
+}
+table#t01 th {
+    background-color: black;
+    color: white;
+}
+</style>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<h1>Ubicaciones</h1>
+<table id="t01"> 
+<tr>
+	<th> Precisión</th>
+	<th> Coordenadas </th>
+	<th> Hora </th>
+	<th> Fecha </th>
+</tr>
+{% for waypoint in waypoints %}
+<tr>
+	<td>{{waypoint.name}} m</td>
+	<td>({{waypoint.geometry.y}}, {{waypoint.geometry.x}})</td>
+	<td>{{waypoint.hour}} </td>
+	<td>{{waypoint.date}} </td>
+</tr>	
+
+{% endfor %}
+</table>
+
+
+
+<!--{% for waypoint in waypoints %}
+    <div id={{waypoint.id}} class='waypoint linkOFF'>
+        {{waypoint.name}} ({{waypoint.geometry.y}}, {{waypoint.geometry.x}})
+    </div>
+{% endfor %}-->
+</head>
+<body>
+	
+</body>
