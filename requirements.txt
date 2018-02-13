@@ -32,7 +32,6 @@ plainbox==0.25
 psycopg2==2.7.3.2
 ptyprocess==0.5
 pyasn1==0.1.9
-pycups==1.9.73
 pycurl==7.43.0
 pygobject==3.27.3
 PyJWT==1.3.0
