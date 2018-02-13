@@ -102,6 +102,21 @@
         		infoWindow.setPosition(pos);
         		infoWindow.setContent('Location found.');
         		map.setCenter(pos);
+
+             switch(position.code) {
+        case position.PERMISSION_DENIED:
+            // El usuario denegó el permiso para la Geolocalización.
+            break;
+        case position.POSITION_UNAVAILABLE:
+            // La ubicación no está disponible.
+            break;
+        case position.TIMEOUT:
+            // Se ha excedido el tiempo para obtener la ubicación.
+            break;
+        case position.UNKNOWN_ERROR:
+            // Un error desconocido.
+            break;
+    }
         	}, function() {
         		handleLocationError(true, infoWindow, map.getCenter());
         	});
@@ -109,6 +124,7 @@
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
       }
+
 
   }
 
