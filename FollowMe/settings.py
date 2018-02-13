@@ -25,7 +25,7 @@ SECRET_KEY = 'n&^@z#mxpz50+1s5(b@w58ui#jc$_*=7+lxa-yis8kr=$$(p=j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['followmee.herokuapp.com']
 
 
 # Application definition
