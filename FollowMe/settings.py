@@ -83,9 +83,9 @@ WSGI_APPLICATION = 'FollowMe.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'cps_dbs',
+        'NAME': 'followme',
         'USER': 'admin',
-        'PASSWORD': 'cps20181*',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
