@@ -25,7 +25,7 @@ SECRET_KEY = 'n&^@z#mxpz50+1s5(b@w58ui#jc$_*=7+lxa-yis8kr=$$(p=j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['followmee.herokuapp.com']
+ALLOWED_HOSTS = ['followmee.herokuapp.com','localhost']
 
 
 # Application definition
@@ -158,8 +158,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 import dj_database_url
-DATABASES['default'] = dj_database_url.config()
-DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+#DATABASES['default'] = dj_database_url.config()
+#DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH')
 GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH')

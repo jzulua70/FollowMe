@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 
 
-
+import FollowMeApp
 from FollowMeApp.views import (login_view, register_view, logout_view, index)
 from geoApp.views import (map,getPosition) 
 urlpatterns = [
