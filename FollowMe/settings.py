@@ -155,3 +155,6 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+GDAL_LIBRARY_PATH = "/app/.heroku/vendor/lib/libgdal.so"
+GEOS_LIBRARY_PATH = "/app/.heroku/vendor/lib/libgeos_c.so"
