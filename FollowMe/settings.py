@@ -25,7 +25,7 @@ SECRET_KEY = 'n&^@z#mxpz50+1s5(b@w58ui#jc$_*=7+lxa-yis8kr=$$(p=j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['followmee.herokuapp.com','localhost','10.131.137.230']
+ALLOWED_HOSTS = ['followmee.herokuapp.com','localhost','10.131.137.230', '0.0.0.0']
 
 
 # Application definition
@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'followme',
         'USER': 'admin',
-        'PASSWORD': '',
+        'PASSWORD': 'cps20181*',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
