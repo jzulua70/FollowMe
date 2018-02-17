@@ -81,7 +81,7 @@ Esta aplicación permite que un usuario pueda crear una cuenta y ser seguido med
         	-Fecha.
         	-Precisión.
 
-- Test: DCA ubicado en la universidad EAFIT. Se requiere de un acceso VPN para el acceso a la plataforma. El link de acceso es el siguiente (http://10.131.137.230:80/FollowMeApp/index)
+- Test: DCA ubicado en la universidad EAFIT. Se requiere de una VPN para el acceso a la plataforma. El link de acceso es el siguiente (http://10.131.137.230:80/FollowMeApp/index)
 
 -Producción: https://followmee.herokuapp.com/FollowMeApp/index
 Para montar la aplicación a heroku se utilizó el siguiente tutorial de la documentación oficial de heroku: (https://devcenter.heroku.com/articles/deploying-python)
@@ -97,9 +97,13 @@ Para montar la aplicación a heroku se utilizó el siguiente tutorial de la docu
 Source: (https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-centos-7)
 
 - Para acceder al sevidor se hace por medio de ssh, con el usario y la ip: user1@10.131.137.230
+
 luego de acceder las siguientes instalaciones son ncesarias:
+
 *Todas las instalaciones se hacen con sudo*.
+
 	-Instalar GitHub: yum install git
+
 	Estas instalaciones son necesarias para que django puede correr correctamente:
 
 	-Instalar python3.5: yum -y install python35u
@@ -142,7 +146,76 @@ luego de acceder las siguientes instalaciones son ncesarias:
 
 - Abrir el firewall para el puerto 80: $ sudo firewall-cmd --zone=public --add-port=80/tcp --permanent $ sudo firewall-cmd --reload
 
--Clonar el repositorio de git e instalarlo.
+-Clonar el repositorio de git e instalarlo:
+	
+	$mkdir FollowMe
+
+	$ cd FollowMe
+
+	$git clone https://github.com/jzulua70/FollowMe.git
+
+	$cd FollowMe
+
+	$python3.5 manage.py migrate
+
+	$python3.5 manage.py runserver
+
+
+4. Desplegando en Apache server:
+
+	-source: (https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-centos-7)
+
+	-Instalar httpd: sudo yum install httpd mod_wsgi
+
+	-Para configurar el servidor se edita el siguiente archivo : 
+
+		$sudo nano /etc/httpd/conf.d/django.conf
+		con la siguiente información:
+
+		<VirtualHost *:80>                                                                                                                             
+		    #My site Name                                                                                                                                           
+		    #Demon process for multiple virtual hosts                                                                                                  
+		    WSGIDaemonProcess FollowMe python-path=/usr/bin/python3.5                                                                                  
+		                                                                                                                                               
+		    #Pointing wsgi script to config file                                                                                                       
+		    WSGIScriptAlias / /var/www/FollowMe/django.wsgi                                                                                            
+		    WSGIProcessGroup FollowMe                                                                                                                  
+		                                                                                                                                               
+		    #Your static files location                                                                                                                
+		    Alias /static/ "/var/www/FollowMe/FollowMeApp/static/"                                                                                     
+		    <Location "/media">                                                                                                                        
+		        SetHandler None                                                                                                                        
+		    </Location>                                                                                                                                
+		    <LocationMatch "\.(jpg|gif|png|js|css)$">                                                                                                  
+		        SetHandler None                                                                                                                        
+		    </LocationMatch>                                                                                                                           
+		    <Directory /var/www/FollowMe>                                                                                                              
+		        WSGIProcessGroup FollowMe                                                                                                              
+		        WSGIApplicationGroup %{GLOBAL}                                                                                                         
+		        Order deny,allow                                                                                                                       
+		        Allow from all                                                                                                                         
+		    </Directory>                                                                                                                               
+		</VirtualHost>   
+
+		-Agregar el apache user y darle permisos:
+
+		  $sudo usermod -a -G user1 apache
+
+		  $chmod 710 /home/user
+
+
+		-Luego comenzamos el servicio de apache:
+
+			$sudo systemctl start httpd
+
+		- Y por último lo habilitamos:
+
+			$sudo systemctl enable httpd
+
+
+
+
+
 
 
 
