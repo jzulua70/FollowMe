@@ -197,20 +197,20 @@ luego de acceder las siguientes instalaciones son ncesarias:
 		    </Directory>                                                                                                                               
 		</VirtualHost>   
 
-		-Agregar el apache user y darle permisos:
+	-Agregar el apache user y darle permisos:
 
-		  $sudo usermod -a -G user1 apache
+	  $sudo usermod -a -G user1 apache
 
-		  $chmod 710 /home/user
+	  $chmod 710 /home/user
 
 
-		-Luego comenzamos el servicio de apache:
+	-Luego comenzamos el servicio de apache:
 
-			$sudo systemctl start httpd
+		$sudo systemctl start httpd
 
-		- Y por último lo habilitamos:
+	- Y por último lo habilitamos:
 
-			$sudo systemctl enable httpd
+		$sudo systemctl enable httpd
 
 
 
