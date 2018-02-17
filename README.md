@@ -13,20 +13,21 @@ Esta aplicación permite que un usuario pueda crear una cuenta y ser seguido med
 1.1. La base de datos cuenta con los siguientes modelos y relaciones:
 
 1.1.1. auth_user:
+
                                      Table "public.auth_user"
- |   Column    |           Type           |                       Modifiers                        |
- |-------------|--------------------------|--------------------------------------------------------|
- |id           | integer                  | not null default nextval('auth_user_id_seq'::regclass) |
- |password     | character varying(128)   | not null                                               |
- |last_login   | timestamp with time zone |                                                        |
- |is_superuser | boolean                  | not null                                               |
- |username     | character varying(150)   | not null                                               |
- |first_name   | character varying(30)    | not null                                               |
- |last_name    | character varying(150)   | not null                                               |
- |email        | character varying(254)   | not null                                               |
- |is_staff     | boolean                  | not null                                               |
- |is_active    | boolean                  | not null                                               |
- |date_joined  | timestamp with time zone | not null                                               |
+|Column    |           Type           |                       Modifiers                        |
+|-------------|--------------------------|--------------------------------------------------------|
+|id           | integer                  | not null default nextval('auth_user_id_seq'::regclass) |
+|password     | character varying(128)   | not null                                               |
+|last_login   | timestamp with time zone |                                                        |
+|is_superuser | boolean                  | not null                                               |
+|username     | character varying(150)   | not null                                               |
+|first_name   | character varying(30)    | not null                                               |
+|last_name    | character varying(150)   | not null                                               |
+|email        | character varying(254)   | not null                                               |
+|is_staff     | boolean                  | not null                                               |
+|is_active    | boolean                  | not null                                               |
+|date_joined  | timestamp with time zone | not null                                               |
 
 1.1.2. geoApp_waypoint:
 
