@@ -31,14 +31,14 @@ Esta aplicación permite que un usuario pueda crear una cuenta y ser seguido med
 1.1.2. geoApp_waypoint:
 
                      Table "public.geoApp_waypoint"
-  Column  |         Type          |                           Modifiers                            
-----------+-----------------------+----------------------------------------------------------------
- id       | integer               | not null default nextval('"geoApp_waypoint_id_seq"'::regclass)
- name     | character varying(32) | not null
- geometry | geometry(Point,4326)  | not null
- user_id  | integer               | not null
- date     | character varying(32) | not null
- hour     | character varying(32) | not null
+|Column  |         Type          |                           Modifiers                           | 
+|----------|-----------------------|--------------------------------------------------------------|
+|id       | integer               | not null default nextval('"geoApp_waypoint_id_seq"'::regclass)|
+|name     | character varying(32) | not null                                                      |
+|geometry | geometry(Point,4326)  | not null                                                      |
+|user_id  | integer               | not null                                                      |
+|date     | character varying(32) | not null                                                      |
+|hour     | character varying(32) | not null                                                      |
 
 
 
@@ -87,7 +87,9 @@ Para montar la aplicación a heroku se utilizó el siguiente tutorial de la docu
 
 
 2. Especifícaciones técnicas:
+
 -Python3.5
+
 -Django2.0
 
 3. Desplegando la aplicación de django en linux Centos 7:
@@ -98,26 +100,43 @@ luego de acceder las siguientes instalaciones son ncesarias:
 *Todas las instalaciones se hacen con sudo*.
 	-Instalar GitHub: yum install git
 	Estas instalaciones son necesarias para que django puede correr correctamente:
+
 	-Instalar python3.5: yum -y install python35u
+
 	-Instalar pip3.5: yum -y install python35u-pip
+
 	-Instalar django: pip3.5 install Django
+
 	-Instalar django-crispy-forms: pip3.5 install django-crispy-forms
+
 	-install dj_database_url: pip3.5 install dj_database_url
+
 	-install psycopg2: pip3.5 install psycopg2
+
 	-instalar whitenoise: pip3.5 install whitenoise
 
 	-Instalar postgis: yum install postgis.
+
 	-Instalar wsgi para python3.5: yum install python35u-mod_wsgi
+
 	-Instalar postgres y crear base de datos:
+
 	-Agregar repositorio Epel: yum -y install epel-release
+
 	-Instalar Postgres: yum install postgresql-server postgresql-contrib postgresql-devel
+
 	- Crear base de datos inicial: sudo postgresql-setup initdb
+
 		-run postgres:
+
 			-sudo systemctl start postgresql
+
 			-sudo systemctl enable postgresql
 
 	- Crear base de datos-FollowMe:
+
 		-sudo -i -u postgres
+
 		-CREATE DATABASE FollowMe WITH OWNER admin;
 
 - Abrir el firewall para el puerto 80: $ sudo firewall-cmd --zone=public --add-port=80/tcp --permanent $ sudo firewall-cmd --reload
