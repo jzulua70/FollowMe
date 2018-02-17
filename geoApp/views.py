@@ -18,18 +18,19 @@ def getPosition(request):
 
 
 def getData(request):
-	latitud=request.POST['lat']
-	longitud=request.POST['lng']
-	hora = request.POST['Hora']
-	fecha = request.POST['Fecha']
-	precision = request.POST['precision']
-	current_user = request.user
-	id_user = str(current_user.id)
-	user_name = str(current_user.username)
-	geo=GEOSGeometry('POINT('+longitud+' '+latitud+')')
-	Waypoint.objects.create(name=precision,geometry=geo, user_id=id_user,date=fecha[:10], hour=hora)
+	if len(str(request.POST['lat'])) > 0:
+		latitud=request.POST['lat']
+		longitud=request.POST['lng']
+		hora = request.POST['Hora']
+		fecha = request.POST['Fecha']
+		precision = request.POST['precision']
+		current_user = request.user
+		id_user = str(current_user.id)
+		user_name = str(current_user.username)
+		geo=GEOSGeometry('POINT('+longitud+' '+latitud+')')
+		Waypoint.objects.create(name=precision,geometry=geo, user_id=id_user,date=fecha[:10], hour=hora)
 
-	print(request.POST['Hora'])
+		print(request.POST['Hora'])
 	return render(request,'getPosition.html')
 
 
