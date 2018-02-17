@@ -96,8 +96,8 @@ Source: (https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-
 - Para acceder al sevidor se hace por medio de ssh, con el usario y la ip: user1@10.131.137.230
 luego de acceder las siguientes instalaciones son ncesarias:
 *Todas las instalaciones se hacen con sudo*.
--Instalar GitHub: yum install git
-Estas instalaciones son necesarias para que django puede correr correctamente:
+	-Instalar GitHub: yum install git
+	Estas instalaciones son necesarias para que django puede correr correctamente:
 	-Instalar python3.5: yum -y install python35u
 	-Instalar pip3.5: yum -y install python35u-pip
 	-Instalar django: pip3.5 install Django
@@ -106,9 +106,9 @@ Estas instalaciones son necesarias para que django puede correr correctamente:
 	-install psycopg2: pip3.5 install psycopg2
 	-instalar whitenoise: pip3.5 install whitenoise
 
--Instalar postgis: yum install postgis.
--Instalar wsgi para python3.5: yum install python35u-mod_wsgi
--Instalar postgres y crear base de datos:
+	-Instalar postgis: yum install postgis.
+	-Instalar wsgi para python3.5: yum install python35u-mod_wsgi
+	-Instalar postgres y crear base de datos:
 	-Agregar repositorio Epel: yum -y install epel-release
 	-Instalar Postgres: yum install postgresql-server postgresql-contrib postgresql-devel
 	- Crear base de datos inicial: sudo postgresql-setup initdb
