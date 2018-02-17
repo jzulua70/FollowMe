@@ -80,50 +80,50 @@ Esta aplicación permite que un usuario pueda crear una cuenta y ser seguido med
         	-Fecha.
         	-Precisión.
 
-	- Test: DCA ubicado en la universidad EAFIT. Se requiere de un acceso VPN para el acceso a la plataforma. El link de acceso es el siguiente (http://10.131.137.230:80/FollowMeApp/index)
+- Test: DCA ubicado en la universidad EAFIT. Se requiere de un acceso VPN para el acceso a la plataforma. El link de acceso es el siguiente (http://10.131.137.230:80/FollowMeApp/index)
 
-	-Producción: https://followmee.herokuapp.com/FollowMeApp/index
-	Para montar la aplicación a heroku se utilizó el siguiente tutorial de la documentación oficial de heroku: (https://devcenter.heroku.com/articles/deploying-python)
+-Producción: https://followmee.herokuapp.com/FollowMeApp/index
+Para montar la aplicación a heroku se utilizó el siguiente tutorial de la documentación oficial de heroku: (https://devcenter.heroku.com/articles/deploying-python)
 
 
-	2. Especifícaciones técnicas:
-	-Python3.5
-	-Django2.0
+2. Especifícaciones técnicas:
+-Python3.5
+-Django2.0
 
-	3. Desplegando la aplicación de django en linux Centos 7:
-		Source: (https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-centos-7)
+3. Desplegando la aplicación de django en linux Centos 7:
+Source: (https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-centos-7)
 
-	- Para acceder al sevidor se hace por medio de ssh, con el usario y la ip: user1@10.131.137.230
-	luego de acceder las siguientes instalaciones son ncesarias:
-	*Todas las instalaciones se hacen con sudo*.
-		-Instalar GitHub: yum install git
-		Estas instalaciones son necesarias para que django puede correr correctamente:
-			-Instalar python3.5: yum -y install python35u
-			-Instalar pip3.5: yum -y install python35u-pip
-			-Instalar django: pip3.5 install Django
-			-Instalar django-crispy-forms: pip3.5 install django-crispy-forms
-			-install dj_database_url: pip3.5 install dj_database_url
-			-install psycopg2: pip3.5 install psycopg2
-			-instalar whitenoise: pip3.5 install whitenoise
-		
-		-Instalar postgis: yum install postgis.
-		-Instalar wsgi para python3.5: yum install python35u-mod_wsgi
-		-Instalar postgres y crear base de datos:
-			-Agregar repositorio Epel: yum -y install epel-release
-			-Instalar Postgres: yum install postgresql-server postgresql-contrib postgresql-devel
-			- Crear base de datos inicial: sudo postgresql-setup initdb
-				-run postgres:
-					-sudo systemctl start postgresql
-					-sudo systemctl enable postgresql
+- Para acceder al sevidor se hace por medio de ssh, con el usario y la ip: user1@10.131.137.230
+luego de acceder las siguientes instalaciones son ncesarias:
+*Todas las instalaciones se hacen con sudo*.
+-Instalar GitHub: yum install git
+Estas instalaciones son necesarias para que django puede correr correctamente:
+	-Instalar python3.5: yum -y install python35u
+	-Instalar pip3.5: yum -y install python35u-pip
+	-Instalar django: pip3.5 install Django
+	-Instalar django-crispy-forms: pip3.5 install django-crispy-forms
+	-install dj_database_url: pip3.5 install dj_database_url
+	-install psycopg2: pip3.5 install psycopg2
+	-instalar whitenoise: pip3.5 install whitenoise
 
-			- Crear base de datos-FollowMe:
-				-sudo -i -u postgres
-				-CREATE DATABASE FollowMe WITH OWNER admin;
+-Instalar postgis: yum install postgis.
+-Instalar wsgi para python3.5: yum install python35u-mod_wsgi
+-Instalar postgres y crear base de datos:
+	-Agregar repositorio Epel: yum -y install epel-release
+	-Instalar Postgres: yum install postgresql-server postgresql-contrib postgresql-devel
+	- Crear base de datos inicial: sudo postgresql-setup initdb
+		-run postgres:
+			-sudo systemctl start postgresql
+			-sudo systemctl enable postgresql
 
-		- Abrir el firewall para el puerto 80: $ sudo firewall-cmd --zone=public --add-port=80/tcp --permanent $ sudo firewall-cmd --reload
+	- Crear base de datos-FollowMe:
+		-sudo -i -u postgres
+		-CREATE DATABASE FollowMe WITH OWNER admin;
 
-		-Clonar el repositorio de git e instalarlo.
-		
+- Abrir el firewall para el puerto 80: $ sudo firewall-cmd --zone=public --add-port=80/tcp --permanent $ sudo firewall-cmd --reload
+
+-Clonar el repositorio de git e instalarlo.
+
 
 
 		
