@@ -83,7 +83,7 @@ Esta aplicación permite que un usuario pueda crear una cuenta y ser seguido med
 
 - Test: DCA ubicado en la universidad EAFIT. Se requiere de una VPN para el acceso a la plataforma. El link de acceso es el siguiente (http://10.131.137.230:80/FollowMeApp/index)
 
--Producción: https://followmee.herokuapp.com/FollowMeApp/index
+- Producción: https://followmee.herokuapp.com/FollowMeApp/index
 Para montar la aplicación a heroku se utilizó el siguiente tutorial de la documentación oficial de heroku: (https://devcenter.heroku.com/articles/deploying-python)
 
 
