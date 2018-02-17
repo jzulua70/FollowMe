@@ -208,7 +208,7 @@ luego de acceder las siguientes instalaciones son ncesarias:
 
 		$sudo systemctl start httpd
 
-	- Y por último lo habilitamos:
+    -Y por último lo habilitamos:
 
 		$sudo systemctl enable httpd
 
