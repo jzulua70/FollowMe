@@ -84,21 +84,22 @@ Esta aplicación permite que un usuario pueda crear una cuenta y ser seguido med
 - Test: DCA ubicado en la universidad EAFIT. Se requiere de una VPN para el acceso a la plataforma. El link de acceso es el siguiente (http://10.131.137.230:80/FollowMeApp/index)
 
 - Producción: https://followmee.herokuapp.com/FollowMeApp/index
+
 Para montar la aplicación a heroku se utilizó el siguiente tutorial de la documentación oficial de heroku: (https://devcenter.heroku.com/articles/deploying-python)
 
 
 2. Especifícaciones técnicas:
 
--Python3.5
+	- Python3.5
 
--Django2.0
+	- Django2.0
 
 3. Desplegando la aplicación de django en linux Centos 7:
 Source: (https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-centos-7)
 
 - Para acceder al sevidor se hace por medio de ssh, con el usario y la ip: user1@10.131.137.230
 
-luego de acceder las siguientes instalaciones son ncesarias:
+Luego de acceder las siguientes instalaciones son necesarias:
 
 *Todas las instalaciones se hacen con sudo*.
 
@@ -148,9 +149,7 @@ luego de acceder las siguientes instalaciones son ncesarias:
 
 -Clonar el repositorio de git e instalarlo:
 	
-	$mkdir FollowMe
-
-	$ cd FollowMe
+	$ cd /var/www/
 
 	$git clone https://github.com/jzulua70/FollowMe.git
 
@@ -163,11 +162,11 @@ luego de acceder las siguientes instalaciones son ncesarias:
 
 4. Desplegando en Apache server:
 
-	-source: (https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-centos-7)
+	- source: (https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-centos-7)
 
-	-Instalar httpd: sudo yum install httpd mod_wsgi
+	- Instalar httpd: sudo yum install httpd mod_wsgi
 
-	-Para configurar el servidor se edita el siguiente archivo : 
+	- Para configurar el servidor se edita el siguiente archivo : 
 
 		$sudo nano /etc/httpd/conf.d/django.conf
 		con la siguiente información:
@@ -197,18 +196,18 @@ luego de acceder las siguientes instalaciones son ncesarias:
 		    </Directory>                                                                                                                               
 		</VirtualHost>   
 
-	-Agregar el apache user y darle permisos:
+	- Agregar el apache user y darle permisos:
 
 	  $sudo usermod -a -G user1 apache
 
 	  $chmod 710 /home/user
 
 
-	-Luego comenzamos el servicio de apache:
+	- Luego comenzamos el servicio de apache:
 
 		$sudo systemctl start httpd
 
-    -Y por último lo habilitamos:
+    - Y por último lo habilitamos:
 
 		$sudo systemctl enable httpd
 
