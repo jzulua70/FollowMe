@@ -39,7 +39,7 @@ pyparsing==2.0.3
 python-debian==0.1.23
 python-systemd==0.0.9
 pytz==2017.3
-pyxdg==0.25
+pyxdg==0.26
 reportlab==3.3.0
 requests==2.9.1
 six==1.11.0
